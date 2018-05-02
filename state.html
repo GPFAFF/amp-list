@@ -1,0 +1,57 @@
+<!doctype html>
+<html ⚡>
+<head>
+  <meta charset="utf-8">
+  <title>AMP Bind</title>
+  <link rel="canonical" href="self.html" />
+  <meta name="viewport" content="width=device-width,minimum-scale=1">
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+  <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+
+  <style amp-custom>
+    h1 {
+      margin: 1rem;
+    }
+    #btn {
+      padding: 20px;
+      width: 100%;
+      border: 0;
+      background-color: blue;
+      color: white;
+    }
+    #btn:hover {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>AMP State</h1>
+
+  <amp-img id="amp-img" src="https://www.placecage.com/g/200/300" layout="responsive" width="300" height="200"
+    [src]="allAnimals[allAnimals.currentAnimal][imageUrl.message]">
+    </amp-img>
+
+  <amp-state id="remoteAnimals" [src]="remoteAnimalUrl">
+      <script type="application/json">
+      { "currentAnimal" : "dog",
+        "dog": {
+          "imageUrl": "https://dog.ceo/api/breeds/image/random"
+        }
+      }
+      </script>
+    </amp-state>
+
+    <!-- ## Load state remotely -->
+    <!--
+      By setting the `src` attribute of the `amp-state`,
+      new data is fetched and merged into the `amp-state`.
+    -->
+
+    <button class="ampstart-btn caps m1" on="tap:AMP.setState({remoteAnimalUrl: '/json/amp-bind-data-new-state.json?RANDOM'})">
+      Set to Bird
+    </button>
+
+</body>
+</html>
+
